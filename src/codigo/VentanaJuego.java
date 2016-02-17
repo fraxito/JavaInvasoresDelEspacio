@@ -126,8 +126,9 @@ public class VentanaJuego extends javax.swing.JFrame {
           case KeyEvent.VK_LEFT : { miNave.setPulsadoIzquierda(true); } break;
           case KeyEvent.VK_RIGHT : { miNave.setPulsadoDerecha(true);} break;
           case KeyEvent.VK_SPACE : { 
-              miDisparo.setDisparado(true);
-              miDisparo.posicionaDisparo(miNave);
+              listaDisparos[numeroDisparosEnPantalla].setDisparado(true);
+              listaDisparos[numeroDisparosEnPantalla].posicionaDisparo(miNave);
+              numeroDisparosEnPantalla++;
             } break;
       }  
   
