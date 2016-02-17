@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 public class Nave {
    public Image imagen = null;
    private int x = 0;
-   public int y = 0;
+   private int y = 0;
    private boolean pulsadoIzquierda = false;
    private boolean pulsadoDerecha = false;
    private int anchoMundo;
@@ -65,5 +65,13 @@ public class Nave {
         if (this.pulsadoDerecha && this.x < anchoMundo-imagen.getWidth(null)){
             this.x = this.x + 1;
         }
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

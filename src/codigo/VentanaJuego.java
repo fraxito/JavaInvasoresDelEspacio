@@ -29,7 +29,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     });
     
     Nave miNave = new Nave(ANCHOPANTALLA);
-
+    Disparo miDisparo = new Disparo(ALTOPANTALLA);
     
     
     /**
@@ -37,14 +37,14 @@ public class VentanaJuego extends javax.swing.JFrame {
      */
     public VentanaJuego() {
         initComponents();
-        this.setSize(ANCHOPANTALLA, ALTOPANTALLA);
+        this.setSize(ANCHOPANTALLA+15, ALTOPANTALLA);
         
         //creamos el buffer con el tamaño del jPanel
         buffer = (BufferedImage) jPanel1.createImage(ANCHOPANTALLA, ALTOPANTALLA);
         buffer.createGraphics();
         
         miNave.setX(ANCHOPANTALLA /2);
-        miNave.y = ALTOPANTALLA - 100;
+        miNave.setY(ALTOPANTALLA - 100);
         temporizador.start();
     }
     
@@ -56,11 +56,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         g2.fillRect(0, 0, ANCHOPANTALLA, ALTOPANTALLA);
         ////////////////////////////////////////////////////
         
+        //recoloco el disparo
+        miDisparo.mueve();
+        //pinto el disparo
+        g2.drawImage(miDisparo.imagen, miDisparo.getX(), miDisparo.getY(), null);        
+        
         //recoloco la nave
         miNave.mueve();
         //pinto la nave
-        
-        g2.drawImage(miNave.imagen, miNave.getX(), miNave.y, null);
+        g2.drawImage(miNave.imagen, miNave.getX(), miNave.getY(), null);
         
         ///////////////////////////////////////////////////
         //apunto al jPanel y dibujo el buffer sobre el jPanel
@@ -119,6 +123,10 @@ public class VentanaJuego extends javax.swing.JFrame {
       switch (evt.getKeyCode()){
           case KeyEvent.VK_LEFT : { miNave.setPulsadoIzquierda(true); } break;
           case KeyEvent.VK_RIGHT : { miNave.setPulsadoDerecha(true);} break;
+          case KeyEvent.VK_SPACE : { 
+              miDisparo.setDisparado(true);
+              miDisparo.posicionaDisparo(miNave);
+            } break;
       }  
   
         
