@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.Timer;
 
@@ -27,7 +28,9 @@ public class VentanaJuego extends javax.swing.JFrame {
         }
     });
     
-    Nave miNave = new Nave();
+    Nave miNave = new Nave(ANCHOPANTALLA);
+
+    
     
     /**
      * Creates new form VentanaJuego
@@ -40,7 +43,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         buffer = (BufferedImage) jPanel1.createImage(ANCHOPANTALLA, ALTOPANTALLA);
         buffer.createGraphics();
         
-        miNave.x = ANCHOPANTALLA /2;
+        miNave.setX(ANCHOPANTALLA /2);
         miNave.y = ALTOPANTALLA - 100;
         temporizador.start();
     }
@@ -52,9 +55,13 @@ public class VentanaJuego extends javax.swing.JFrame {
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, ANCHOPANTALLA, ALTOPANTALLA);
         ////////////////////////////////////////////////////
+        
+        //recoloco la nave
+        miNave.mueve();
         //pinto la nave
         
-        g2.drawImage(miNave.imagen, miNave.x, miNave.y, null);
+        g2.drawImage(miNave.imagen, miNave.getX(), miNave.y, null);
+        
         ///////////////////////////////////////////////////
         //apunto al jPanel y dibujo el buffer sobre el jPanel
         g2 = (Graphics2D) jPanel1.getGraphics();
@@ -74,6 +81,14 @@ public class VentanaJuego extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,6 +114,22 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+      switch (evt.getKeyCode()){
+          case KeyEvent.VK_LEFT : { miNave.setPulsadoIzquierda(true); } break;
+          case KeyEvent.VK_RIGHT : { miNave.setPulsadoDerecha(true);} break;
+      }  
+  
+        
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+      switch (evt.getKeyCode()){
+          case KeyEvent.VK_LEFT : { miNave.setPulsadoIzquierda(false);} break;
+          case KeyEvent.VK_RIGHT : { miNave.setPulsadoDerecha(false);} break;
+      }
+    }//GEN-LAST:event_formKeyReleased
 
     /**
      * @param args the command line arguments

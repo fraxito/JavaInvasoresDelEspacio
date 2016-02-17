@@ -15,15 +15,55 @@ import javax.imageio.ImageIO;
  */
 public class Nave {
    public Image imagen = null;
-   public int x = 0;
+   private int x = 0;
    public int y = 0;
+   private boolean pulsadoIzquierda = false;
+   private boolean pulsadoDerecha = false;
+   private int anchoMundo;
    
-   public Nave (){
+   public Nave (int _anchoMundo){
        try{
            imagen = ImageIO.read(getClass().getResource("/imagenes/nave.png"));
+           this.anchoMundo = _anchoMundo;
        }
        catch(IOException e){
        
        }
    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        if (x>0){
+            this.x = x;
+        }
+    }
+
+    public boolean isPulsadoIzquierda() {
+        return pulsadoIzquierda;
+    }
+
+    public void setPulsadoIzquierda(boolean pulsadoIzquierda) {
+        this.pulsadoIzquierda = pulsadoIzquierda;
+        
+    }
+
+    public boolean isPulsadoDerecha() {
+        return pulsadoDerecha;
+    }
+
+    public void setPulsadoDerecha(boolean pulsadoDerecha) {
+        this.pulsadoDerecha = pulsadoDerecha;
+        
+    }
+    public void mueve(){
+        if (this.pulsadoIzquierda && this.x >0){
+            this.x = this.x - 1;
+        }
+        if (this.pulsadoDerecha && this.x < anchoMundo-imagen.getWidth(null)){
+            this.x = this.x + 1;
+        }
+    }
 }
