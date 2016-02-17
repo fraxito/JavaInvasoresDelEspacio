@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 public class Disparo {
 
     public Image imagen = null;
-    private int x = 0;
+    private int x = -100;
     private int y = 0;
     private int altoMundo;
     private boolean disparado = false;

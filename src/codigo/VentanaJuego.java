@@ -58,11 +58,12 @@ public class VentanaJuego extends javax.swing.JFrame {
         g2.fillRect(0, 0, ANCHOPANTALLA, ALTOPANTALLA);
         ////////////////////////////////////////////////////
         
-        //recoloco el disparo
-        miDisparo.mueve();
-        //pinto el disparo
-        g2.drawImage(miDisparo.imagen, miDisparo.getX(), miDisparo.getY(), null);        
-        
+        for (int i = 0; i < listaDisparos.length; i++) {
+            //recoloco el disparo
+            listaDisparos[i].mueve();
+            //pinto el disparo
+            g2.drawImage(listaDisparos[i].imagen, listaDisparos[i].getX(), listaDisparos[i].getY(), null);
+        }
         //recoloco la nave
         miNave.mueve();
         //pinto la nave
@@ -128,7 +129,10 @@ public class VentanaJuego extends javax.swing.JFrame {
           case KeyEvent.VK_SPACE : { 
               listaDisparos[numeroDisparosEnPantalla].setDisparado(true);
               listaDisparos[numeroDisparosEnPantalla].posicionaDisparo(miNave);
-              numeroDisparosEnPantalla++;
+              if (numeroDisparosEnPantalla < listaDisparos.length-1)
+                {
+                    numeroDisparosEnPantalla++;
+                }
             } break;
       }  
   
