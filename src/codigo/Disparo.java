@@ -21,10 +21,10 @@ public class Disparo {
     private int altoMundo;
     private boolean disparado = false;
 
-    public Disparo(int _altoMundo) {
+    public Disparo() {
         try {
             imagen = ImageIO.read(getClass().getResource("/imagenes/disparo.png"));
-            this.altoMundo = _altoMundo;
+            //this.altoMundo = _altoMundo;
         } catch (IOException e) {
 
         }

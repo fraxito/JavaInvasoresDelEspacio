@@ -29,8 +29,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     });
     
     Nave miNave = new Nave(ANCHOPANTALLA);
-    Disparo miDisparo = new Disparo(ALTOPANTALLA);
-    
+    Disparo [] listaDisparos = new Disparo[5];
+    int numeroDisparosEnPantalla = 0;
     
     /**
      * Creates new form VentanaJuego
@@ -38,7 +38,9 @@ public class VentanaJuego extends javax.swing.JFrame {
     public VentanaJuego() {
         initComponents();
         this.setSize(ANCHOPANTALLA+15, ALTOPANTALLA);
-        
+        for (int i=0; i< listaDisparos.length; i++){
+            listaDisparos[i] = new Disparo();
+        }
         //creamos el buffer con el tamaño del jPanel
         buffer = (BufferedImage) jPanel1.createImage(ANCHOPANTALLA, ALTOPANTALLA);
         buffer.createGraphics();
