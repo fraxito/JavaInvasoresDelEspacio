@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import javax.swing.Timer;
 
 
@@ -29,7 +30,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     });
     
     Nave miNave = new Nave(ANCHOPANTALLA);
-    Disparo [] listaDisparos = new Disparo[5];
+    ArrayList <Disparo> listaDisparos = new ArrayList();
     int numeroDisparosEnPantalla = 0;
     
     /**
@@ -38,9 +39,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     public VentanaJuego() {
         initComponents();
         this.setSize(ANCHOPANTALLA+15, ALTOPANTALLA);
-        for (int i=0; i< listaDisparos.length; i++){
-            listaDisparos[i] = new Disparo();
-        }
+
         //creamos el buffer con el tamaño del jPanel
         buffer = (BufferedImage) jPanel1.createImage(ANCHOPANTALLA, ALTOPANTALLA);
         buffer.createGraphics();
@@ -58,11 +57,21 @@ public class VentanaJuego extends javax.swing.JFrame {
         g2.fillRect(0, 0, ANCHOPANTALLA, ALTOPANTALLA);
         ////////////////////////////////////////////////////
         
-        for (int i = 0; i < listaDisparos.length; i++) {
+        for (int i = 0; i < listaDisparos.size(); i++) {
+            Disparo aux;
+            aux = listaDisparos.get(i);
             //recoloco el disparo
-            listaDisparos[i].mueve();
+            aux.mueve();
+            //si la posicion Y del disparo es menor o igual a 0, es que
+            //ha llegado arriba del todo. En ese caso tengo que eliminarlo
+            //si no, lo pinto
+            if (aux.getY() <= -10){
+                listaDisparos.remove(aux);
+            }
+            else{
             //pinto el disparo
-            g2.drawImage(listaDisparos[i].imagen, listaDisparos[i].getX(), listaDisparos[i].getY(), null);
+                g2.drawImage(aux.imagen, aux.getX(), aux.getY(), null);
+            }
         }
         //recoloco la nave
         miNave.mueve();
@@ -127,12 +136,15 @@ public class VentanaJuego extends javax.swing.JFrame {
           case KeyEvent.VK_LEFT : { miNave.setPulsadoIzquierda(true); } break;
           case KeyEvent.VK_RIGHT : { miNave.setPulsadoDerecha(true);} break;
           case KeyEvent.VK_SPACE : { 
-              listaDisparos[numeroDisparosEnPantalla].setDisparado(true);
-              listaDisparos[numeroDisparosEnPantalla].posicionaDisparo(miNave);
-              if (numeroDisparosEnPantalla < listaDisparos.length-1)
-                {
-                    numeroDisparosEnPantalla++;
-                }
+              // creo un disparo y lo añado al arrayList
+              Disparo d = new Disparo();
+              d.setDisparado(true);
+              d.posicionaDisparo(miNave);
+              listaDisparos.add(d);
+//              if (numeroDisparosEnPantalla < listaDisparos.size())
+//                {
+//                    numeroDisparosEnPantalla++;
+//                }
             } break;
       }  
   
