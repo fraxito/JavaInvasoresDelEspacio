@@ -16,15 +16,14 @@ import javax.imageio.ImageIO;
 public class Disparo {
 
     public Image imagen = null;
-    private int x = -100;
+    private int x = 0;
     private int y = 0;
-    private int altoMundo;
     private boolean disparado = false;
 
     public Disparo() {
         try {
             imagen = ImageIO.read(getClass().getResource("/imagenes/disparo.png"));
-            //this.altoMundo = _altoMundo;
+
         } catch (IOException e) {
 
         }
@@ -35,7 +34,9 @@ public class Disparo {
     }
 
     public void setY(int y) {
-        this.y = y;
+        if (y > 0){
+            this.y = y;
+        }
     }
 
     public void mueve() {

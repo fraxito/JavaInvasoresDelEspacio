@@ -31,7 +31,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     
     Nave miNave = new Nave(ANCHOPANTALLA);
     ArrayList <Disparo> listaDisparos = new ArrayList();
-    int numeroDisparosEnPantalla = 0;
+    
+    ArrayList <Marciano> listaMarcianos = new ArrayList();
     
     /**
      * Creates new form VentanaJuego
@@ -40,6 +41,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         initComponents();
         this.setSize(ANCHOPANTALLA+15, ALTOPANTALLA);
 
+        //creamos los marcianos y los añado a la lista
+        for (int i=0; i< 5; i++){
+            for (int j=0; j<10; j++){
+                Marciano miMarciano = new Marciano();
+                miMarciano.setX(j* (miMarciano.imagen.getWidth(null)));
+                miMarciano.setY(i* (miMarciano.imagen.getHeight(null)));
+                listaMarcianos.add(miMarciano);
+            }
+        }
         //creamos el buffer con el tamaño del jPanel
         buffer = (BufferedImage) jPanel1.createImage(ANCHOPANTALLA, ALTOPANTALLA);
         buffer.createGraphics();
@@ -48,15 +58,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         miNave.setY(ALTOPANTALLA - 100);
         temporizador.start();
     }
-    
-    private void bucleDelJuego(){
-        //primero apunto al buffer
-        Graphics2D g2 = (Graphics2D) buffer.getGraphics();
-        //pinto un rectángulo negro del tamaño del jPanel
-        g2.setColor(Color.BLACK);
-        g2.fillRect(0, 0, ANCHOPANTALLA, ALTOPANTALLA);
-        ////////////////////////////////////////////////////
-        
+   
+    private void pintaDisparos(Graphics2D g2){
         for (int i = 0; i < listaDisparos.size(); i++) {
             Disparo aux;
             aux = listaDisparos.get(i);
@@ -73,6 +76,37 @@ public class VentanaJuego extends javax.swing.JFrame {
                 g2.drawImage(aux.imagen, aux.getX(), aux.getY(), null);
             }
         }
+    }
+
+    private void pintaMarcianos(Graphics2D g2){
+        for (int i = 0; i < listaMarcianos.size(); i++) {
+            Marciano aux;
+            aux = listaMarcianos.get(i);
+            //recoloco el marciano
+            //aux.mueve();
+
+            if (aux.getY() <= -10){
+                listaMarcianos.remove(aux);
+            }
+            else{
+            //pinto el marciano
+            //falta el sistema para saber si pinto la imagen 1 o la 2
+                g2.drawImage(aux.imagen, aux.getX(), aux.getY(), null);
+            }
+        }
+    }
+    
+    private void bucleDelJuego(){
+        //primero apunto al buffer
+        Graphics2D g2 = (Graphics2D) buffer.getGraphics();
+        //pinto un rectángulo negro del tamaño del jPanel
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, ANCHOPANTALLA, ALTOPANTALLA);
+        ////////////////////////////////////////////////////
+        
+        pintaDisparos(g2);
+        pintaMarcianos(g2);
+        
         //recoloco la nave
         miNave.mueve();
         //pinto la nave
