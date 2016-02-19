@@ -41,7 +41,7 @@ public class Disparo {
 
     public void mueve() {
         if (this.y > -10) {
-            this.y = this.y - 1;
+            this.y = this.y - 5;
         }
         
     }
