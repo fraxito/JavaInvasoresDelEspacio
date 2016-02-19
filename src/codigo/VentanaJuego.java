@@ -225,13 +225,10 @@ public class VentanaJuego extends javax.swing.JFrame {
           case KeyEvent.VK_SPACE : { 
               // creo un disparo y lo añado al arrayList
               Disparo d = new Disparo();
-              d.setDisparado(true);
+
               d.posicionaDisparo(miNave);
               listaDisparos.add(d);
-//              if (numeroDisparosEnPantalla < listaDisparos.size())
-//                {
-//                    numeroDisparosEnPantalla++;
-//                }
+
             } break;
       }  
   
