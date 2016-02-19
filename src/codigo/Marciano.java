@@ -45,6 +45,14 @@ public class Marciano {
         this.y = y;
     }
     
-   
+    public void mueve(boolean _direccionMarciano){
+        
+        if (_direccionMarciano ){
+            this.x = this.x - 1;
+        }
+        if (!_direccionMarciano ){
+            this.x = this.x + 1;
+        }
+    }
    
 }

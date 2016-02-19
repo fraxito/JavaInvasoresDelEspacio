@@ -84,20 +84,28 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
 
     private void pintaMarcianos(Graphics2D g2){
+        boolean cambia = false;
         for (int i = 0; i < listaMarcianos.size(); i++) {
             Marciano aux;
             aux = listaMarcianos.get(i);
             //recoloco el marciano
-            //aux.mueve();
-
-            if (aux.getY() <= -10){
-                listaMarcianos.remove(aux);
-            }
-            else{
+            aux.mueve(direccionMarcianos);
+            if (aux.getX()+aux.imagen.getWidth(null) > ANCHOPANTALLA){
+                cambia = true;
+            } 
+            if (aux.getX() <=0){
+                cambia = true;
+            }             
             //pinto el marciano
             //falta el sistema para saber si pinto la imagen 1 o la 2
-                g2.drawImage(aux.imagen, aux.getX(), aux.getY(), null);
-            }
+            g2.drawImage(aux.imagen, aux.getX(), aux.getY(), null);
+
+        }
+        if (cambia){ //si es true es que algún marciano ha tocado la pared derecha
+            if (direccionMarcianos) {
+                direccionMarcianos = false;}
+            else {direccionMarcianos = true;}
+            //direccionMarcianos = direccionMarcianos? false:true;
         }
     }
     
