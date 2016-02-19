@@ -45,8 +45,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         for (int i=0; i< 5; i++){
             for (int j=0; j<10; j++){
                 Marciano miMarciano = new Marciano();
-                miMarciano.setX(j* (miMarciano.imagen.getWidth(null)));
-                miMarciano.setY(i* (miMarciano.imagen.getHeight(null)));
+                miMarciano.setX(j* (15 + miMarciano.imagen.getWidth(null)));
+                miMarciano.setY(i* (10 + miMarciano.imagen.getHeight(null)));
                 listaMarcianos.add(miMarciano);
             }
         }
