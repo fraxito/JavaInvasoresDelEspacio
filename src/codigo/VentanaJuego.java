@@ -102,6 +102,9 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         }
         if (cambia){ //si es true es que algún marciano ha tocado la pared derecha
+            for (Marciano aux : listaMarcianos) {
+                aux.setY(aux.getY() + aux.imagen.getHeight(null) /2 );
+            }
             if (direccionMarcianos) {
                 direccionMarcianos = false;}
             else {direccionMarcianos = true;}
