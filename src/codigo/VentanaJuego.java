@@ -34,6 +34,11 @@ public class VentanaJuego extends javax.swing.JFrame {
     
     ArrayList <Marciano> listaMarcianos = new ArrayList();
     
+    //variable booleana que gobierna el movimiento de los marcianos
+    boolean direccionMarcianos = false;
+            
+            
+            
     /**
      * Creates new form VentanaJuego
      */
