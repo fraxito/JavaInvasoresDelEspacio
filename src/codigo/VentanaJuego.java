@@ -35,6 +35,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     
     ArrayList <Marciano> listaMarcianos = new ArrayList();
     
+    ArrayList <Explosion> listaExplosiones = new ArrayList();
+    
     //variable booleana que gobierna el movimiento de los marcianos
     boolean direccionMarcianos = false;
       
@@ -134,12 +136,38 @@ public class VentanaJuego extends javax.swing.JFrame {
                 //asigno el marco a la posición del marciano
                 rectanguloMarciano.setFrame(m.getX(),m.getY(), m.imagen.getWidth(null), m.imagen.getHeight(null));
                 if (rectanguloDisparo.intersects(rectanguloMarciano)){
+                    //creo una explosión y la añado en la posición en la que 
+                    //está el marciano
+                    Explosion e = new Explosion();
+                    e.setX(m.getX());
+                    e.setY(m.getY());
+                    listaExplosiones.add(e);
+                    //elimino al marciano y al disparo
                     listaMarcianos.remove(m);
                     listaDisparos.remove(d);
                 }
             }
         }
         
+    }
+    
+    private void pintaExplosiones(Graphics2D g2){
+        for (int i = 0; i < listaExplosiones.size(); i++) {
+            Explosion e = listaExplosiones.get(i);
+            //resto uno de vida a la explosión
+            e.setTiempoDeVida(e.getTiempoDeVida() - 1);
+
+            //pinto la explosión
+            if (e.getTiempoDeVida() > 10){
+                g2.drawImage(e.imagen, e.getX(), e.getY(), null);
+            }
+            else if (e.getTiempoDeVida() > 0){
+                g2.drawImage(e.imagen2, e.getX(), e.getY(), null);
+            }
+            else {//la explosión ha terminado
+                listaExplosiones.remove(e);
+            }
+        }
     }
     
     private void bucleDelJuego(){
@@ -160,6 +188,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         pintaDisparos(g2);
         pintaMarcianos(g2);
         chequeaColision();
+        pintaExplosiones(g2);
         //recoloco la nave
         miNave.mueve();
         //pinto la nave
