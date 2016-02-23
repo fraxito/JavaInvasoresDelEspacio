@@ -13,15 +13,14 @@ import javax.imageio.ImageIO;
  *
  * @author xp
  */
-public class Nave {
-   public Image imagen = null;
-   private int x = 0;
-   private int y = 0;
+public class Nave extends Sprite{
+
    private boolean pulsadoIzquierda = false;
    private boolean pulsadoDerecha = false;
    private int anchoMundo;
    
    public Nave (int _anchoMundo){
+       this.setVelocidad(1);
        try{
            imagen = ImageIO.read(getClass().getResource("/imagenes/nave.png"));
            this.anchoMundo = _anchoMundo;
@@ -30,16 +29,6 @@ public class Nave {
        
        }
    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        if (x>0){
-            this.x = x;
-        }
-    }
 
     public boolean isPulsadoIzquierda() {
         return pulsadoIzquierda;
@@ -59,19 +48,13 @@ public class Nave {
         
     }
     public void mueve(){
-        if (this.pulsadoIzquierda && this.x >0){
-            this.x = this.x - 1;
+        if (this.pulsadoIzquierda && this.getX() >0){
+            this.setX(this.getX() - this.getVelocidad());
         }
-        if (this.pulsadoDerecha && this.x < anchoMundo-imagen.getWidth(null)){
-            this.x = this.x + 1;
+        if (this.pulsadoDerecha && this.getX() < anchoMundo-imagen.getWidth(null)){
+            this.setX(this.getX() + this.getVelocidad());
         }
     }
 
-    public int getY() {
-        return y;
-    }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 }
