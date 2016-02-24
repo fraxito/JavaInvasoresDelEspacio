@@ -27,24 +27,24 @@ public abstract class Sprite {
         g2.drawImage(i,               //la imagen con todos los sprites
          this.getX(),                   //posición X en el jPanel
          this.getY(),                   //posición Y en el jPanel
-         (this.getX() + this.getAncho())/3,  //ancho en el jPanel
-         (this.getY() + this.getAlto())/3,   //alto en el jPanel
-         this.getFila(),                //posición inicial x dentro del sprite
+         this.getX()+ getAncho(),  //ancho en el jPanel
+         this.getY()+ getAlto(),   //alto en el jPanel
+         this.getFila() ,                //posición inicial x dentro del sprite
          this.getColumna(),             //posición inicial y dentro del sprite
-         (this.getAncho())/3 ,              //ancho en el sprite  
-         (this.getAlto())/3 ,               //alto en el sprite
+         this.getFila() + getAncho() ,              //ancho en el sprite  
+         this.getColumna() + getAlto() ,               //alto en el sprite
          null);
        }
        else {
         g2.drawImage(i,               //la imagen con todos los sprites
          this.getX(),                   //posición X en el jPanel
          this.getY(),                   //posición Y en el jPanel
-         this.getX() + this.getAncho(),  //ancho en el jPanel
-         this.getY() + this.getAlto(),   //alto en el jPanel
-         this.getFila2(),                //posición inicial x dentro del sprite
+         this.getX()+ getAncho(),  //ancho en el jPanel
+         this.getY()+ getAlto(),   //alto en el jPanel
+         this.getFila2() ,                //posición inicial x dentro del sprite
          this.getColumna2(),             //posición inicial y dentro del sprite
-         this.getAncho() ,              //ancho en el sprite  
-         this.getAlto() ,               //alto en el sprite
+         this.getFila2() + getAncho() ,              //ancho en el sprite  
+         this.getColumna2() + getAlto() ,               //alto en el sprite
          null);
        }
    }

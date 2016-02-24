@@ -21,7 +21,7 @@ import javax.swing.Timer;
 
 public class VentanaJuego extends javax.swing.JFrame {
 
-    static int ANCHOPANTALLA = 600;
+    static int ANCHOPANTALLA = 900;
     static int ALTOPANTALLA = 750;
     
     BufferedImage buffer = null;
@@ -61,7 +61,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         
         //creamos los marcianos y los añado a la lista
         for (int i=0; i< 5; i++){
-            for (int j=0; j<10; j++){
+            for (int j=0; j<5; j++){
                 Marciano miMarciano = new Marciano();
                 miMarciano.setX(j* (15 + miMarciano.getAncho()));
                 miMarciano.setY(i* (10 + miMarciano.getAlto()));
