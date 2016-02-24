@@ -5,9 +5,6 @@
  */
 package codigo;
 
-import java.awt.Image;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -17,11 +14,6 @@ public class Disparo extends Sprite{
 
     public Disparo() {
         this.setVelocidad(8);
-        try {
-            imagen = ImageIO.read(getClass().getResource("/imagenes/disparo.png"));
-
-        } catch (IOException e) {
-        }
     }
 
     public void mueve() {
@@ -32,7 +24,7 @@ public class Disparo extends Sprite{
     }
 
     public void posicionaDisparo(Nave n){
-        this.setX(n.getX() + n.imagen.getWidth(null)/2 - this.imagen.getWidth(null)/2)  ;
+        this.setX(n.getX())  ;
         this.setY(n.getY()) ;
     }
 }

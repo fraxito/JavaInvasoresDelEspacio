@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package codigo;
 
-import java.awt.Image;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+package codigo;
 
 /**
  *
@@ -21,13 +13,11 @@ public class Nave extends Sprite{
    
    public Nave (int _anchoMundo){
        this.setVelocidad(1);
-       try{
-           imagen = ImageIO.read(getClass().getResource("/imagenes/nave.png"));
-           this.anchoMundo = _anchoMundo;
-       }
-       catch(IOException e){
-       
-       }
+        this.setAncho(75);
+        this.setAlto(55);
+        this.setFila(150);
+        this.setColumna(635);
+
    }
 
     public boolean isPulsadoIzquierda() {
@@ -51,7 +41,7 @@ public class Nave extends Sprite{
         if (this.pulsadoIzquierda && this.getX() >0){
             this.setX(this.getX() - this.getVelocidad());
         }
-        if (this.pulsadoDerecha && this.getX() < anchoMundo-imagen.getWidth(null)){
+        if (this.pulsadoDerecha && this.getX() < anchoMundo - this.getAncho()){
             this.setX(this.getX() + this.getVelocidad());
         }
     }
