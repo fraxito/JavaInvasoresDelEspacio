@@ -14,6 +14,10 @@ public class Disparo extends Sprite{
 
     public Disparo() {
         this.setVelocidad(8);
+        this.setAncho(18/3);
+        this.setAlto(53/3);
+        this.setFila(13/3);
+        this.setColumna(32/3);
     }
 
     public void mueve() {
@@ -24,7 +28,7 @@ public class Disparo extends Sprite{
     }
 
     public void posicionaDisparo(Nave n){
-        this.setX(n.getX())  ;
+        this.setX(n.getX()+ n.getAncho()/2 - this.getAncho()/2)   ;
         this.setY(n.getY()) ;
     }
 }

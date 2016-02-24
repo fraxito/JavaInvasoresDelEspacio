@@ -13,11 +13,11 @@ public class Nave extends Sprite{
    
    public Nave (int _anchoMundo){
        this.setVelocidad(1);
-        this.setAncho(75);
-        this.setAlto(55);
-        this.setFila(150);
-        this.setColumna(635);
-
+        this.setAncho(75/3);
+        this.setAlto(55/3);
+        this.setFila(150/3);
+        this.setColumna(635/3);
+        this.anchoMundo = _anchoMundo;
    }
 
     public boolean isPulsadoIzquierda() {

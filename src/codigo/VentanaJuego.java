@@ -21,7 +21,7 @@ import javax.swing.Timer;
 
 public class VentanaJuego extends javax.swing.JFrame {
 
-    static int ANCHOPANTALLA = 900;
+    static int ANCHOPANTALLA = 800;
     static int ALTOPANTALLA = 750;
     
     BufferedImage buffer = null;
@@ -56,12 +56,14 @@ public class VentanaJuego extends javax.swing.JFrame {
         this.setSize(ANCHOPANTALLA+15, ALTOPANTALLA);
         try{
             plantilla = ImageIO.read(getClass().getResource("/imagenes/invaders.png"));
+        
         }
         catch(IOException ex){}
+        plantilla = plantilla.getScaledInstance((int)plantilla.getWidth(null)/3, (int)plantilla.getHeight(null)/3, Image.SCALE_SMOOTH);
         
         //creamos los marcianos y los añado a la lista
         for (int i=0; i< 5; i++){
-            for (int j=0; j<5; j++){
+            for (int j=0; j<10; j++){
                 Marciano miMarciano = new Marciano();
                 miMarciano.setX(j* (15 + miMarciano.getAncho()));
                 miMarciano.setY(i* (10 + miMarciano.getAlto()));
